@@ -211,13 +211,13 @@ def cell_list_to_rect(cell_list):
     if not cell_list:
         return []
 
-    rows = defaultdict(lambda: defaultdict(str))
+    rows = defaultdict(lambda: defaultdict(lambda: None))
 
     row_offset = cell_list[0].row
     col_offset = cell_list[0].col
 
     for cell in cell_list:
-        row = rows.setdefault(int(cell.row) - row_offset, defaultdict(str))
+        row = rows.setdefault(int(cell.row) - row_offset, defaultdict(lambda: None))
         row[cell.col - col_offset] = cell.value
 
     if not rows:
